@@ -39,4 +39,21 @@ public class Utils {
         return Arrays.stream(numbers)
                 .map(String::trim).mapToInt(Integer::parseInt).toArray();
     }
+
+    /**
+     * Sum numbers separated by the given delimiter contained in the given numbersArray
+     *
+     * @param numbersArray
+     * @param delimiter
+     * @return
+     */
+    public static int sumMultiLine(String[] numbersArray, String delimiter) {
+        int Sum = 0;
+        for (String strings : numbersArray) {
+            int[] ints = convert(explode(strings, delimiter));
+            Sum += sum(ints);
+        }
+        return Sum;
+    }
+
 }

@@ -20,12 +20,6 @@ public class StringCalculatorForStep3 implements StringCalculator {
         }
         String[] numbersArray = Utils.explode(numbers, "\n");
 
-        int Sum = 0;
-        for (String strings : numbersArray) {
-            int[] ints = Utils.convert(Utils.explode(strings, ","));
-            Sum += Utils.sum(ints);
-        }
-
-        return Sum;
+        return Utils.sumMultiLine(numbersArray, ",");
     }
 }
