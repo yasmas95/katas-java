@@ -15,9 +15,7 @@ public class StringCalculatorForStep4Test {
         assertEquals(7, stringCalculator.Add("1,6"));
         assertEquals(10, stringCalculator.Add("2,3,5"));
         assertEquals(6, stringCalculator.Add("1\n2,3"));
-        Exception exception = assertThrows(CalculatorException.class, () -> {
-            stringCalculator.Add("1,\n2");
-        });
+        assertThrows(CalculatorException.class, () -> stringCalculator.Add("1,\n2"));
     }
 
     @Test

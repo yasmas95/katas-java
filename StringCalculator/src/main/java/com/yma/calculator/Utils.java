@@ -1,6 +1,10 @@
 package com.yma.calculator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Utils {
 
@@ -54,6 +58,23 @@ public class Utils {
             Sum += sum(ints);
         }
         return Sum;
+    }
+
+    /**
+     * Extract the negatives numbers from the given numbers
+     *
+     * @param numbers
+     * @return
+     */
+    public static List<Integer> getNegativeNumbers(String numbers) {
+        Pattern pattern = Pattern.compile("-[0-9]?");
+        Matcher matcher = pattern.matcher(numbers);
+
+        List<Integer> result = new ArrayList<>(0);
+        while (matcher.find()) {
+            result.add(Integer.parseInt(matcher.group()));
+        }
+        return result;
     }
 
 }

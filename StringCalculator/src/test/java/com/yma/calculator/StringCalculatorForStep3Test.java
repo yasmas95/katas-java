@@ -25,10 +25,7 @@ public class StringCalculatorForStep3Test {
     @Test
     public void addWhenNotOkTest() {
         StringCalculator stringCalculator = new StringCalculatorForStep3();
-        Exception exception = assertThrows(CalculatorException.class, () -> {
-            stringCalculator.Add("1,\n2");
-        });
-
+        Exception exception = assertThrows(CalculatorException.class, () -> stringCalculator.Add("1,\n2"));
         assertEquals("The 1,\n2 is not ok", exception.getMessage());
     }
 }

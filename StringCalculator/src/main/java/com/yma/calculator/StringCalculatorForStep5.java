@@ -1,12 +1,6 @@
 package com.yma.calculator;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-public class StringCalculatorForStep5 implements StringCalculator {
+public class StringCalculatorForStep5 extends StringCalculatorForStep4 {
 
     /**
      * Sum numbers separated by delimiter in the first line contained in the given numbers
@@ -18,34 +12,10 @@ public class StringCalculatorForStep5 implements StringCalculator {
      */
     @Override
     public int Add(String numbers) {
-
-        if (numbers.isEmpty()) {
-            return 0;
+        if (!Utils.getNegativeNumbers(numbers).isEmpty()) {
+            throw new CalculatorException(String.format("Negatives values %s not allowed", Utils.getNegativeNumbers(numbers)));
         }
 
-        Pattern pattern = Pattern.compile("-[0-9]?");
-        Matcher matcher = pattern.matcher(numbers);
-
-        List<Integer> negatives = new ArrayList<>(0);
-        while (matcher.find()) {
-            negatives.add(Integer.parseInt(matcher.group()));
-        }
-
-        if (!negatives.isEmpty()) {
-            throw new CalculatorException(String.format("Negatives values %s not allowed", negatives));
-        }
-
-        if (numbers.contains(",\n")) {
-            throw new CalculatorException(String.format("The %s is not ok", numbers));
-        }
-        String delimiter = ",";
-        String[] numbersArray = Utils.explode(numbers, "\n");
-
-        if (numbersArray[0].contains("//")) {
-            delimiter = String.valueOf(numbersArray[0].charAt(numbersArray[0].length() - 1));
-            numbersArray = Arrays.copyOfRange(numbersArray, 1, numbersArray.length);
-        }
-
-        return Utils.sumMultiLine(numbersArray, delimiter);
+        return super.Add(numbers);
     }
 }
