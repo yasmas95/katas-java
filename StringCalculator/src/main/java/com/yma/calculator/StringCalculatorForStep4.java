@@ -1,5 +1,7 @@
 package com.yma.calculator;
 
+import java.util.Arrays;
+
 public class StringCalculatorForStep4 implements StringCalculator {
 
     /**
@@ -15,13 +17,18 @@ public class StringCalculatorForStep4 implements StringCalculator {
         if (numbers.isEmpty()) {
             return 0;
         }
-
         if (numbers.contains(",\n")) {
             throw new CalculatorException(String.format("The %s is not ok", numbers));
         }
+        String delimiter = ",";
         String[] numbersArray = Utils.explode(numbers, "\n");
 
-        return Utils.sumMultiLine(numbersArray, ",");
+        if (numbersArray[0].contains("//")) {
+            delimiter = String.valueOf(numbersArray[0].charAt(numbersArray[0].length() - 1));
+            numbersArray = Arrays.copyOfRange(numbersArray, 1, numbersArray.length);
+        }
+
+        return Utils.sumMultiLine(numbersArray, delimiter);
     }
 
 
