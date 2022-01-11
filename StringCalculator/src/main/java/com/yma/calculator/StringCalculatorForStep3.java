@@ -15,8 +15,17 @@ public class StringCalculatorForStep3 implements StringCalculator {
             return 0;
         }
 
-        String[] numbersArray = Utils.explode(numbers, ",");
-        int[] intsArray = Utils.convert(numbersArray);
-        return Utils.sum(intsArray);
+        if (numbers.contains(",\n")) {
+            throw new CalculatorException(String.format("The %s is not ok", numbers));
+        }
+        String[] numbersArray = Utils.explode(numbers, "\n");
+
+        int Sum = 0;
+        for (String strings : numbersArray) {
+            int[] ints = Utils.convert(Utils.explode(strings, ","));
+            Sum += Utils.sum(ints);
+        }
+
+        return Sum;
     }
 }
