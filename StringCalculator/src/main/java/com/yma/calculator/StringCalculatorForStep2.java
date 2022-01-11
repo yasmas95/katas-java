@@ -15,9 +15,6 @@ public class StringCalculatorForStep2 implements StringCalculator {
         }
 
         String[] numbersArray = Utils.explode(numbers, ",");
-        if (numbersArray.length > 2) {
-            return 0;
-        }
         int[] intsArray = Utils.convert(numbersArray);
         return Utils.sum(intsArray);
     }
